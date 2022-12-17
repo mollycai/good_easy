@@ -1,0 +1,9 @@
+/* 全局样式表 */
+
+
+/* 为什么引入全局样式表无效 */
+
+.main_component_box {
+    padding: '24px';
+    background: '#fff'
+}

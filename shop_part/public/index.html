@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>logo.ico">
+    <!-- 引入全局样式 -->
+    <link rel="stylesheet" href="./css/global.css">
+    <style>
+        #Loading {
+            background-color: #fff;
+            height: 100%;
+            position: relative;
+            overflow-y: hidden;
+        }
+        
+        .loading_spin {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="Loading">
+        <div class="loading_spin"><img src="./loading/spin.gif" alt="" style="width: 400px;height: 300px;"></div>
+    </div>
+    <div id="app"></div>
+</body>
+
+<!-- 注意此脚本要移动到body后，html加载的顺序是自上而下的，否则获取不到body -->
+<script>
+    let loading = document.getElementById('Loading');
+    if (loading != null) {
+        document.body.style.overflowY = 'hidden';
+    } else {
+        document.body.style.overflowY = 'scroll';
+    }
+</script>
+
+</html>
