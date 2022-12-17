@@ -35,6 +35,13 @@
 | 技术           | 版本    | 说明                     |
 | -------------- | ------- | ------------------------ |
 | vue            | 2.6.14  | 渐进式的 JavaScript 框架 |
+| vue-router     | 3.5.1   | vue路由                 |
+| vuex           | 3.6.2   | vue数据仓库             |
+| lodash         | 4.17.21 | JavaScript 工具库       |
+| vue2-editor    | 2.10.3  | vue2使用的富文本编辑器   |
+| vue-awesome-swiper | 3.1.3  | 轮播图插件           |
+| vuex           | 3.6.2   | vue数据仓库             |
+| lodash         | 4.17.21 | JavaScript 工具库       |
 | axios          | 0.27.2  | 基于promise的网络请求库  |
 | webpack        | 5.74.0  | 打包工具                 |
 | nodejs         | 16.15.0 | JavaScript 运行时环境    |
