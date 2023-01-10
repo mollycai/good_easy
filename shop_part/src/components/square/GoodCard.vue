@@ -2,18 +2,18 @@
     <!-- 首页商品卡片组件 -->
     <section class="cards">
         <article class="card" >  
-        <a href="#">
-            <div class="img_box">
-                <div><img v-lazy="bigImage" alt="" :class="imgHeight >= imgWidth ? 'height':'width'"/></div>
+            <a href="#">
+                <div class="img_box">
+                    <div><img v-lazy="bigImage" alt="" :class="imgHeight >= imgWidth ? 'height':'width'"/></div>
+                </div>
+            </a>
+            <div class="card__info">
+                <div class="card__name one_text"> {{goodInfo.goodsName || goodInfo.name}}</div>
+                <h3 class="card__price">￥{{((goodInfo.price * 100) / 100).toFixed(2)}}</h3>
+                <span class="card__seller">
+                    <AvatarBox :avatar="goodInfo.avatar" :name="goodInfo.sellerName"/>
+                </span>
             </div>
-        </a>
-        <div class="card__info">
-            <div class="card__name one_text"> {{goodInfo.goodsName || goodInfo.name}}</div>
-            <h3 class="card__price">￥{{((goodInfo.price * 100) / 100).toFixed(2)}}</h3>
-            <span class="card__seller">
-                <AvatarBox :avatar="goodInfo.avatar" :name="goodInfo.sellerName"/>
-            </span>
-        </div>
         </article>
     </section>
 </template>
@@ -65,17 +65,17 @@ export default{
     .card {
         margin-right: 25px;
         transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
-        background-color: #fff;
+        background-color: var(--main-white);
         overflow: hidden;
-        box-shadow: 0px 8px 10px -7px rgba(0, 0, 0,0.1);
+        box-shadow: 0px 8px 10px -7px var(--main-shadow);
     }
     .card:hover {
-        box-shadow: 0px 15px 18px -8px rgba(0, 0, 0,0.1);
+        box-shadow: 0px 15px 18px -8px var(--main-shadow);
         transform: scale(1.1, 1.1);
     }
     .card__info {
         z-index: 999;
-        background-color: #fff;
+        background-color: var(--main-white);
         padding: 16px 20px;
         height: 136px;
         position: relative;
@@ -85,14 +85,14 @@ export default{
         font-size: 15px;
         letter-spacing: 2px;
         font-weight: 500;
-        color: black;
+        color: var(--main-black);
         overflow: hidden;
         width: 250px;
     }
     .card__price {
         margin-top: 5px;
         margin-bottom: 10px;
-        color: #FFA116;
+        color: var(--main-orange);
         font-weight: 700;
         font-size: 20px;
     }

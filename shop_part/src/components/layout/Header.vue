@@ -3,7 +3,7 @@
     <a-layout-header class="header">
         <!-- logo -->
         <div class="logo">
-            <img src="../../assets/logo/logo.jpg" alt="" style="background-color: #999999;height: 100%;"/>
+            <img src="../../assets/logo/logo.jpg" alt="" style="background-color: var(--main-gray2);height: 100%;"/>
         </div>
         <!-- 导航栏 -->
         <a-menu
@@ -138,7 +138,7 @@ export default{
                 this.$router.push({path:'/info'});
             }else{
                 if(activeName == 'shopcart') {
-                    sessionStorage.setItem('noticeInCart',0);
+                    // sessionStorage.setItem('noticeInCart',0);
                     this.$store.dispatch('setNoticeCount',0);
                 }
                 // 跳到别的地方就把activetabKey设置回100
@@ -175,8 +175,6 @@ export default{
         let init = window.sessionStorage.getItem('activeKey') || this.navList[0].id;
         this.selectedKeys.push(init);
         this.navListId = this.navList.map(item => item.id);
-        // 获取小红点徽标的状态
-        this.$bus.$on('goodToCart',this.getCount)
     }
 }
 </script>
@@ -192,7 +190,7 @@ export default{
         background-color: #fff;
         overflow: hidden;
         z-index: 999;
-        box-shadow: 0 1px 2px rgba(0,0,0,.03);
+        box-shadow: 0 1px 2px var(--main-shadow);
         padding: 0 100px;
     }
     .search_box{
@@ -209,7 +207,7 @@ export default{
         cursor: pointer;
     }
     .bell_box:hover,.shopcar_box:hover,.logout_box:hover{
-        color: #1890ff;
+        color: var(--main-blue);
     }
     .avater_name_box{
         display: inline;

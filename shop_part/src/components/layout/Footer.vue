@@ -1,6 +1,6 @@
 <template>
     <!-- 底部组件 -->
-    <a-layout-footer style="text-align: center;background-color: #000000;;color: #fff;">
+    <a-layout-footer style="text-align: center;background-color: var(--main-black);;color: var(--main-white);">
         <footer class="footer">
             <div class="w">
                 <div class="mod_help">
@@ -79,10 +79,10 @@ export default{
     padding-top: 30px;
 }
 .footer a{
-    color: rgb(150, 150, 150);
+    color: var(--main-gray2);
 }
 .footer a:hover {
-    color: #1e80ff;
+    color: var(--main-blue);
     text-decoration: none;
 }
 .w {
@@ -91,7 +91,7 @@ export default{
 }
 .mod_help {
     height: 185px;
-    border-bottom: 1px solid #CCC;
+    border-bottom: 1px solid var(--main-gray3);
     padding-left: 50px;
 }
 
@@ -120,6 +120,6 @@ export default{
 
 .links a {
     margin: 0 3px;
-    color: rgb(150, 150, 150);
+    color: var(--main-gray2);
 }
 </style>

@@ -73,13 +73,13 @@
 </script>
 <style>
     .comment_title{
-        color: rgb(100, 100, 100);
+        color: var(--gray-1);
         font-size: 18px;
         font-weight: 700;
     }
     .admin_avater{
-        color: #1890ff; 
-        background-Color: rgb(199, 222, 255);
+        color: var(--main-blue); 
+        background-Color: var(--hover-blue);
     }
 </style>
   

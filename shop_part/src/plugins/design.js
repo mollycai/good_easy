@@ -5,7 +5,7 @@ import 'swiper/dist/css/swiper.css';
 import VueAwesomeSwiper from 'vue-awesome-swiper';
 Vue.use(VueAwesomeSwiper);
 
-import { Layout, Menu, Input, Popover, Avatar, Icon, Button, Card, Tooltip, Tabs, Form, Checkbox, Select, message, Divider, Row, Col, Tag, Empty, FormModel, InputNumber, Upload, Radio, Cascader, Modal, Badge, Comment, List, Steps, Spin, Alert, Result, Breadcrumb, Table } from 'ant-design-vue';
+import { Layout, Menu, Input, Popover, Avatar, Icon, Button, Card, Tooltip, Tabs, Form, Checkbox, Select, message, Divider, Row, Col, Tag, Empty, FormModel, InputNumber, Upload, Radio, Cascader, Modal, Badge, Comment, List, Steps, Spin, Alert, Result, Breadcrumb, Table, Rate } from 'ant-design-vue';
 
 Vue.prototype.$message = message;
 Vue.prototype.$confirm = Modal.confirm;
@@ -43,3 +43,4 @@ Vue.use(Alert);
 Vue.use(Result);
 Vue.use(Breadcrumb);
 Vue.use(Table);
+Vue.use(Rate);

@@ -1,8 +1,8 @@
 <template>
     <!-- 订单页面 -->
     <a-layout id="components-layout-demo-top-side">
-        <a-layout-content style="background-color: rgb(247,248,250);padding: 25px 0;">
-            <a-layout style="background: rgb(247,248,250);margin: 0 auto;max-width: 1180px;">
+        <a-layout-content style="background-color: var(--bottom-white);padding: 25px 0;">
+            <a-layout style="background: var(--bottom-white);margin: 0 auto;max-width: 1180px;">
                 <a-layout-content>
                     <!-- 订单状态栏 -->
                     <div class="msg_box" v-if="(order.status == 0 || order.status == 1 || order.status == 2 )">
@@ -26,6 +26,26 @@
                             title="本次交易已完成!"
                             sub-title=""
                         ></a-result>
+                        <div class="grade_box">
+                            <div class="grade_box_item">
+                                对本次交易进行评分：
+                                <span>
+                                    <a-rate v-model="grade" :tooltips="gradetext" :defaultValue="grade" :allow-clear="!isGrade"/>
+                                    <span class="ant-rate-text">{{ gradetext[grade - 1] }}</span>
+                                </span>
+                            </div>
+                            <div v-if="isGrade === false">
+                                <div class="grade_box_item">
+                                    <a-textarea placeholder="对本次交易进行评价" :rows="4" v-model="desc" :disabled="isGrade"/>
+                                </div>
+                                <div>
+                                    <a-button @click="handleGrade()">确定</a-button>
+                                </div>
+                            </div>
+                            <div v-else>
+                                对本次交易进行评价：{{desc}}
+                            </div>
+                        </div>
                     </div>
                     <!-- 订单信息栏 -->
                     <div class="steps-content">
@@ -102,7 +122,14 @@ export default {
             // 剩余分钟
             m:'',
             // 剩余秒钟
-            s:''
+            s:'',
+            // 评分
+            grade: 0,
+            gradetext: ['极差', '差', '一般般', '不错', '太棒了'],
+            // 描述
+            desc:'',
+            // 是否已经评价
+            isGrade:false
         };
     },
     computed:{
@@ -163,8 +190,8 @@ export default {
             }
             this.$store.dispatch('continueToPay',data).then((res) => {
                 // 渲染支付页面
-                // 借助sessionStorage传送表单
-                sessionStorage.setItem('alipay',res.data.form);
+                // 借助localStorage传送表单
+                localStorage.setItem('alipay',res.data.form);
                 // 跳转到新的页面
                 let routeData = this.$router.resolve({name:'pay'});
                 window.open(routeData.href,'_blank');
@@ -195,27 +222,47 @@ export default {
         },
         // 30分钟倒计时
         countdown () {
-            const end = new Date(this.order.createTime).getTime();// update_time是后台返的数据，代表创建订单的那一个时刻的毫秒数
-            const now = new Date().getTime();  // 获取当前时间的毫秒数
-            const minus = now - end;
-            const m_30 = 30 * 60 * 1000; // 30分钟毫秒数，如十分钟倒计时，公式即为10*60*100，以此类推
-            const differ = m_30 - minus;   // 时间差
-            let m = parseInt(differ / 1000 / 60 % 60);
-            let s = parseInt(differ / 1000 % 60);
+            let end = new Date(this.order.createTime).getTime();// createTime是后台返的数据，代表创建订单的那一个时刻的毫秒数
+            let now = new Date().getTime();  // 获取当前时间的毫秒数
+            let minus = now - end;
+            let m_30 = 30 * 60 * 1000; // 30分钟毫秒数，如十分钟倒计时，公式即为30*60*1000，以此类推
+            let differ = m_30 - minus;   // 时间差
+            let m = parseInt(differ / 1000 / 60 % 60); // 求出分钟
+            let s = parseInt(differ / 1000 % 60); // 求出秒数
             this.m = m > 9 ? m : '0' + m;
             this.s = s > 9 ? s : '0' + s;
-            const _this = this;
+            let _this = this; // 注意保存this
             if(m >= 0 && s >= 0) {
                 if(m == 0 && s == 0) {
-                    // 倒计时结束关闭订单
+                    // 倒计时，派发action结束关闭订单
                     this.$store.dispatch('reqOrderInfo',this.$route.params.orderId);
                     return;
                 }
                 setTimeout(function () {
-                    _this.countdown();
+                    _this.countdown(); // 还没结束就递归调用
                 }, 1000)
             }
         },
+        // 提交评价和评分
+        handleGrade(){
+            const data = {
+                orderId:this.order.id,
+                buyerId:this.userId,
+                isGrade:true,
+                grade:this.grade,
+                desc:this.desc,
+                img:''
+            }
+            if(this.grade === 0 || this.desc.trim() === ''){    
+                this.$message.warning('请将评分和评价填写完整！');
+                return;
+            }else{
+                 // 这里后端没有对应接口，先用localstorge应付一下
+                localStorage.setItem(this.order.id + 'grade',JSON.stringify(data));
+                this.$message.success('评价成功！');
+            }
+            window.location.reload();
+        }
     },
     mounted(){
         // 派发获取订单详情
@@ -226,29 +273,39 @@ export default {
         this.$store.dispatch('getUserInfo').then(()=>{
             this.userId = this.$store.state.user.userInfo.id;
         })
+        // 派发评价信息
+        if(localStorage.getItem(this.$route.params.orderId + 'grade')){
+            const {isGrade,grade,desc} = JSON.parse(localStorage.getItem(this.$route.params.orderId + 'grade'));
+            this.isGrade = isGrade;
+            this.grade = grade;
+            this.desc = desc;
+        }
     },
-    beforeMount(){
+    beforeMount() {
         document.title = this.$route.meta.title
     },
     created(){
-        let self = document.getElementById('Loading');
-        if(self != null){
-            let parent = self.parentElement;
-            parent.removeChild(self);
-            document.body.style.overflowY = 'scroll';
-        }
+        this.removeLoading(); 
     }
 };
 </script>
 <style lang="less" scoped>
     .result_box{
         margin-top: 20px;
-        background-color: #fff;
+        background-color: var(--main-white);
+    }
+    .grade_box{
+        padding: 0 30px 30px 30px;
+        font-size: 16px;
+        color: var(--main-black);
+        .grade_box_item{
+            margin-bottom: 20px;
+        }
     }
     .msg_box{
         width: 100%;
-        background-color: #fff;
-        box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        background-color: var(--main-white);
+        box-shadow: 0 1px 2px 0 var(--main-shadow-light);
         padding: 30px 30px;
     }
     .steps-content {
@@ -260,8 +317,8 @@ export default {
     .btn_box{
         margin-top: 20px;
         width: 100%;
-        background-color: #fff;
-        box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        background-color: var(--main-white);
+        box-shadow: 0 1px 2px 0 var(--main-shadow-light);
         padding: 20px 30px;
         display: flex;
         flex-direction: row-reverse;
@@ -273,7 +330,7 @@ export default {
         .time_text{
             font-size: 18px;
             font-weight: 600;
-            color: #f50;
+            color: var(--main-red);
         }
     }
 </style>

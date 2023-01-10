@@ -34,7 +34,7 @@
             </div>
         </div>
          <!-- 商品展示栏 -->
-        <div v-if="this.goodsList.length" style="background-color:  rgb(247,248,250);">
+        <div v-if="this.goodsList.length" style="background-color:  var(--bottom-white);">
             <div class="goos_list">
                 <div class="good_box" v-for="item in this.goodsList" :key="item.id" @click="toDetail(item.id)">
                     <GoodCard :goodInfo="item"></GoodCard>
@@ -68,7 +68,9 @@ export default{
                 page:1,
                 // 每页条数
                 limit:10,
-            }
+                // 控制监听滚动的flag
+                isWatchScroll:true
+            },
         }
     },
     computed:{
@@ -80,9 +82,13 @@ export default{
             total:state => state.square.total
         }),
     },
+    watch:{
+
+    },
     methods:{
         // 去往详情页
         toDetail(id){
+            // 返回路由地址的标准化版本。还包括一个包含任何现有 base 的 href 属性。
             let routeData = this.$router.resolve({
                 name:'detail',
                 params:{
@@ -120,7 +126,7 @@ export default{
             this.pageData.cateId = cateId
             this.$store.dispatch('init_square');
             this.$store.dispatch('GoodsListByCate',this.pageData);
-        }
+        },
     },
     mounted(){
         this.$store.dispatch('categoryList').then(()=>{
@@ -130,7 +136,7 @@ export default{
         this.$store.dispatch('init_square');
         // 挂载的时候先不分类，展示所有商品
         this.$store.dispatch('allGoodsList',this.pageData);
-    }
+    },
 }
 </script>
 
@@ -142,7 +148,7 @@ export default{
         grid-column-gap: 45px;
         grid-row-gap: 50px;
         padding: 30px 0;
-        background-color:  rgb(247,248,250);
+        background-color:  var(--bottom-white);
         padding: 50px 120px;
         overflow: hidden;
     }

@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </a-upload>
-                <div style="width: 100px;font-size: 13px;color: #aaaaaa;line-height: 20px;">
+                <div style="width: 100px;font-size: 13px;color: var(--main-gray2);line-height: 20px;">
                     支持 jpg、png、jpeg 格式大小 2M 以内的图片
                 </div>
             </div>
@@ -210,17 +210,17 @@ export default {
     }
     .ant-upload-select-picture-card i {
         font-size: 32px;
-        color: #999;
+        color: var(--main-gray2);
     }
 
     .ant-upload-select-picture-card .ant-upload-text {
         margin-top: 8px;
-        color: #666;
+        color: var(--main-gray1);
     }
     .user_box{
         background-color: #fff;
         width: 100%;
-        box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        box-shadow: 0 1px 2px 0 var(--main-shadow-light);
         border-radius: 2px;
         overflow: hidden;
     }
@@ -232,7 +232,7 @@ export default {
         font-size: 20px;
         font-weight: 700;
         margin-bottom: 30px;
-        color: #000;
+        color: var(--main-black);
     }
     .message_box{
         display: flex;
@@ -241,7 +241,6 @@ export default {
         }
         .avater_box{
             width: 30%;
-            // border: 1px solid black;
             .user_avater{
                 width: 100px;
                 height: 100px;

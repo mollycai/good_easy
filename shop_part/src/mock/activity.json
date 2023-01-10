@@ -1,0 +1,21 @@
+[{
+    "id": "001",
+    "title": "故易集市",
+    "desc": "折扣好物，低价捡漏...",
+    "img": "/default/default.jpg"
+}, {
+    "id": "002",
+    "title": "旧物换礼",
+    "desc": "用9kg衣服换了...",
+    "img": "/default/default.jpg"
+}, {
+    "id": "003",
+    "title": "高价回收",
+    "desc": "免沟通，免纠纷...",
+    "img": "/default/default.jpg"
+}, {
+    "id": "004",
+    "title": "公益活动",
+    "desc": "每单捐赠1元，帮助山区的孩子走出大山...",
+    "img": "/default/default.jpg"
+}]

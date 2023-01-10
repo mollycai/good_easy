@@ -14,8 +14,8 @@
                         {{order.goodsName}}
                     </div>
                     <div class="desc_box">
-                        共<span style="color:#1890ff;font-wight: 700;"> {{order.goodsNumber}} </span>件商品，
-                        合计<span style="color:#1890ff;"> {{(((order.goodsNumber * order.totalAmount) * 100) / 100).toFixed(2)}} </span>元
+                        共<span style="color:var(--main-blue);font-wight: 700;"> {{order.goodsNumber}} </span>件商品，
+                        合计<span style="color:var(--main-blue);"> {{(((order.goodsNumber * order.totalAmount) * 100) / 100).toFixed(2)}} </span>元
                     </div>
                     <div class="order_id_box">
                         订单编号：{{order.id}}
@@ -45,16 +45,16 @@
         <!-- 收件人信息 -->
         <div class="user_info" @click="(visible = true)">
             <div class="phone_box one_text">
-                <span style="color:#000000">收件人：</span>
-                <span style="color:rgb(160,160,160);">{{(order.name || order.username)}}&nbsp;&nbsp;{{order.phone}}</span>
+                <span style="color:var(--main-black);">收件人：</span>
+                <span style="color:var(--main-gray2);">{{(order.name || order.username)}}&nbsp;&nbsp;{{order.phone}}</span>
             </div>
             <div class="address_box one_text">
-                <span style="color:#000000">交易地址：</span>
-                <span style="color:rgb(160,160,160);">{{order.address}}</span>
+                <span style="color:var(--main-black);">交易地址：</span>
+                <span style="color:var(--main-gray2);">{{order.address}}</span>
             </div>
             <div class="remark_box one_text">
-                <span style="color:#000000">备注：</span>
-                <span style="color:rgb(160,160,160);">{{order.remark || '无备注'}}</span>
+                <span style="color:var(--main-black);">备注：</span>
+                <span style="color:var(--main-gray2);">{{order.remark || '无备注'}}</span>
             </div>
         </div>
     </div>
@@ -108,7 +108,7 @@ export default{
         width: 100%; 
     }
     .outer_box2{
-        background-color: #fff;
+        background-color: var(--main-white);
         padding: 30px 40px;
         display: flex;
         justify-content: space-between;
@@ -135,12 +135,12 @@ export default{
         // border: 1px black solid;
     }
     .text_box{
-        color:rgb(160,160,160);
+        color:var(--main-gray2);
         .title_box{
             padding: 15px 0px 5px 0px;
             // border: black solid 1px;
             font-size: 18px;
-            color: black;
+            color: var(--main-black);
             font-weight: 600;
             max-width: 700px;
         }
@@ -163,7 +163,7 @@ export default{
             text-align: right;
             font-size: 18px;
             font-weight: 500;
-            color: #000000;
+            color: var(--main-black);
         }
         .number_box{
             float: right;
@@ -172,18 +172,18 @@ export default{
         .total_price_box{
             font-size: 22px;
             font-weight: 500;
-            color: #FFA116;
+            color: var(--main-orange);
         }
     }
     .user_info{
-        background-color: #fff;
+        background-color: var(--main-white);
         margin-top: 20px;
         padding: 20px 30px;
         font-size: 15px;
         line-height: 25px;
         max-width: 1180px;
         .phone_box .address_box .remark_box{
-            color: rgb(100, 100, 100);
+            color: var(--main-gray1);
         }
     }
 </style>

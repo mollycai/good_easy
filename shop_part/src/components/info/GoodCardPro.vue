@@ -29,7 +29,7 @@
                 </div>
                 <!-- 价格栏 -->
                 <div class="price_box">
-                    <span style="font-size: 22px;font-weight: 500;color: #FFA116;">{{((goodInfo.price * 100) / 100).toFixed(2)}}</span>&nbsp;
+                    <span style="font-size: 22px;font-weight: 500;color:var(--main-orange);">{{((goodInfo.price * 100) / 100).toFixed(2)}}</span>&nbsp;
                     <a-tag style="margin-left: 10px;">×{{goodInfo.number}}</a-tag>
                 </div>
             </div>
@@ -87,16 +87,14 @@ export default{
     .main_box{
         width: 100%;
         height: 200px;
-        background-color: #fff;
-        // box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
-        // margin: 20px 0;
+        background-color: var(--main-white);
         padding: 20px 30px;
         display: flex;
         justify-content: space-between;
-        border-bottom: 2px solid rgb(247, 248, 250);
+        border-bottom: 2px solid var(--bottom-white);
     }
     .main_box:hover{
-        background-color: rgb(249, 251, 253);
+        background-color: var(--hover-white);
     }
     .img_msg_box{
         display: flex;
@@ -116,7 +114,7 @@ export default{
             .title_box{
                 padding: 5px 0px;
                 font-size: 18px;
-                color: black;
+                color: var(--main-black);
                 font-weight: 500;
                 max-width: 800px;
             }

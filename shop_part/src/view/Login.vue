@@ -6,7 +6,7 @@
             <div class="login_pwd">
                 <!-- logo -->
                 <div class="logo_box">
-                    <img src="../assets/logo/logo.jpg" alt="" style="background-color: #999999;width: 100%;">
+                    <img src="../assets/logo/logo.jpg" alt="" style="background-color: var(--main-gray2);width: 100%;">
                 </div> 
                 <!-- 标题 -->
                 <div class="title_box">
@@ -23,12 +23,12 @@
                     >
                         <a-form-item>
                             <a-input v-decorator="['username',this.validatorRules.username]" placeholder="用户名">
-                                <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
+                                <a-icon slot="prefix" type="user" style="color: var(--main-gray2)" />
                             </a-input>
                         </a-form-item>
                         <a-form-item>
                             <a-input-password v-decorator="['password',this.validatorRules.password]" type="password" placeholder="密码" >
-                                <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+                                <a-icon slot="prefix" type="lock" style="color: var(--main-gray2)" />
                             </a-input-password>
                         </a-form-item>
                         <a-form-item>
@@ -222,16 +222,11 @@ export default {
             }
         },1500),
     },
-    beforeMount(){
+    beforeMount() {
         document.title = this.$route.meta.title
     },
     created(){
-        let self = document.getElementById('Loading');
-        if(self != null){
-            let parent = self.parentElement;
-            parent.removeChild(self);
-            document.body.style.overflowY = 'scroll';
-        }
+        this.removeLoading(); 
     }
 };
 </script>
@@ -262,7 +257,7 @@ export default {
         width: 500px;
         height: 100%;
         padding: 50px 70px;
-        background-color: rgba(255, 255, 255);
+        background-color: var(--main-white);
         border-radius:5px 0 0 5px;
     }
     .logo_box{

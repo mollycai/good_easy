@@ -10,6 +10,8 @@ import square from './square';
 import good from './good';
 import shopcart from './shopcart';
 import trade from './trade';
+import chat from './chat';
+import activity from './activity';
 //对外暴露store的一个实例
 export default new vuex.Store({
     // 实现vuex仓库模块式开发存储数据
@@ -18,6 +20,8 @@ export default new vuex.Store({
         square,
         good,
         shopcart,
-        trade
+        trade,
+        chat,
+        activity
     }
 });

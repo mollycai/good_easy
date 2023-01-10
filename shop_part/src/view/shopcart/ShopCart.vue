@@ -1,8 +1,8 @@
 <template>
     <!-- 购物车页面 -->
     <a-layout id="components-layout-demo-top-side">
-        <a-layout-content style="background-color: rgb(247,248,250);padding: 25px 0;">
-            <a-layout style="background: rgb(247,248,250);margin: 0 auto;max-width: 1180px;">
+        <a-layout-content style="background-color: var(--bottom-white);padding: 25px 0;">
+            <a-layout style="background: var(--bottom-white);margin: 0 auto;max-width: 1180px;">
                 <a-layout-content >
                     <!-- 顶部 -->
                     <div class="cart_head">
@@ -48,12 +48,12 @@
                                     <a-input-number id="inputNumber" :min="1" v-model="item.number" />
                                 </li>
                                 <li class="tab_list_comluns4">
-                                    <span style="font-size: 18px;font-weight: 500;color: #111111;">
+                                    <span style="font-size: 18px;font-weight: 500;color: var(--main-black2);">
                                         {{(item.price).toFixed(2)}}
                                     </span>
                                 </li>
                                 <li class="tab_list_comluns5">
-                                    <span style="font-size: 18px;font-weight: 500;color: #FFA116;">
+                                    <span style="font-size: 18px;font-weight: 500;color: var(--main-orange);">
                                         {{((item.price * item.number * 100) / 100).toFixed(2)}}
                                     </span>
                                 </li>
@@ -71,7 +71,7 @@
                                     &nbsp;全选
                             </div>
                             <div class="account_box">
-                                合计：<span style="font-size: 18px;font-weight: 500;color: #FFA116;">￥ {{totalPrice}}</span>
+                                合计：<span style="font-size: 18px;font-weight: 500;color: var(--main-orange);">￥ {{totalPrice}}</span>
                             </div>
                             <div class="button2_box">
                                 <a-button type="primary" @click="pay()">结算</a-button>
@@ -174,6 +174,7 @@ export default{
             const payList = this.realShopcart.filter(item => item.isCheck);
             // 重构
             const confirmOrders = payList.map(item => item = {shopcarId:item.id,number:item.number});
+            // 派发action生成确认单
             this.$store.dispatch('reqComfirmForm',confirmOrders).then(()=>{
                 this.$router.push('/comfirmshop');
             }).catch((error) => {
@@ -195,16 +196,11 @@ export default{
         })
         await this.$store.dispatch('getShopcartInfo',this.userId);
     },
-    beforeMount(){
-        document.title = this.$route.meta.title;
+    beforeMount() {
+        document.title = this.$route.meta.title
     },
     created(){
-        let self = document.getElementById('Loading');
-        if(self != null){
-            let parent = self.parentElement;
-            parent.removeChild(self);
-            document.body.style.overflowY = 'scroll';
-        }
+        this.removeLoading(); 
     }
 }
 </script>
@@ -217,12 +213,12 @@ export default{
         width: 100%;
     }
     .cart_head,.bottom_box{
-        background-color: #fff;
+        background-color: var(--main-white);
         width: 100%;
-        box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        box-shadow: 0 1px 2px 0 var(--main-shadow-light);
         border-radius: 2px;
         overflow: hidden;
-        color: #a0a0a0;
+        color: var(--main-gray2);
         padding: 20px 24px;
     }
     .bottom_box{
@@ -243,7 +239,7 @@ export default{
         font-weight: 700;
         margin-bottom: 0;
         line-height: 32px;
-        color: #000;
+        color: var(--main-black);
     }
     .check_box{
         flex:8
@@ -256,9 +252,9 @@ export default{
     }
     .shopcart_tab{
         margin: 20px 0;
-        background-color: #fff;
+        background-color: var(--main-white);
         width: 100%;
-        box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        box-shadow: 0 1px 2px 0 var(--main-shadow-light);
         border-radius: 2px;
         .tab_head{
             display: flex;
@@ -266,8 +262,8 @@ export default{
             line-height: 60px;
             text-align: center;
             width: 100%;
-            background-color: #fcfcfc;
-            border-bottom: #e0e0e0 1px solid;
+            background-color: var(--main-white2);
+            border-bottom: var(--main-white3) 1px solid;
             font-weight: 600;
             .tab_comluns1{
                 flex: 1;
@@ -292,7 +288,7 @@ export default{
             display: flex;
             text-align: center;
             padding: 15px 0;
-            border-bottom: #e9e9e9 1px solid;
+            border-bottom: var(--main-white3) 1px solid;
             .tab_list_comluns1{
                 flex:1
             }
@@ -315,7 +311,7 @@ export default{
         }
     }
     .tab_body:hover{
-        background-color: #fafafa;
+        background-color: var(--main-white4);
         transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
     .good_box{
@@ -337,7 +333,7 @@ export default{
         }
         .good_value{
             font-size: 13px;
-            color: #a0a0a0;
+            color: var(--main-gray3);
         }
     }
     

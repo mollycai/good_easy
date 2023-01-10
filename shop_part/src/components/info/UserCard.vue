@@ -15,7 +15,7 @@
                     {{this.userInfo.username}}
                 </div>
                 <div class="content_box">
-                    <p style="color: #b7b7b7;margin:0 0 18px">{{this.userInfo.description}}</p>
+                    <p style="color: var(--main-gray3);margin:0 0 18px">{{this.userInfo.description}}</p>
                     <p style="margin:0 0 10px;max-width: 700px;" class="one_text">
                         <a-icon type="bank" style="margin-right: 10px;"/>{{this.userInfo.school}}
                     </p>
@@ -83,7 +83,7 @@ export default {
 
 <style lang="less" scoped>
     .user_box{
-        background-color: #fff;
+        background-color: var(--main-white);
         width: 100%;
         box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
         border-radius: 2px;
@@ -105,7 +105,7 @@ export default {
         width: 140px;
         height: 140px;
         background-color: aliceblue;
-        color: #1890ff; 
+        color: var(--main-blue); 
         font-size: 70px;
         line-height: 140px;
     }

@@ -17,15 +17,15 @@
                 </div>
                 <div class="orderId_box one_text">
                     <span>订单号：</span>
-                    <span style="color: #646464;">{{orderInfo.id}}</span>
+                    <span style="color: var(--main-gray1);">{{orderInfo.id}}</span>
                 </div>
                 <div class="title_box one_text">
                     <span>商品：</span>
-                    <span style="color: #646464;">{{orderInfo.goodsName}}</span>
+                    <span style="color: var(--main-gray1);">{{orderInfo.goodsName}}</span>
                 </div>
                 <div class="price_box">
                     <span>金额：</span>
-                    <span style="font-weight: 500;color: #FFA116;">￥{{((orderInfo.money * 100) / 100).toFixed(2)}}</span>&nbsp;
+                    <span style="font-weight: 500;color: var(--main-orange);">￥{{((orderInfo.money * 100) / 100).toFixed(2)}}</span>&nbsp;
                 </div>
             </div>
         </div>
@@ -111,16 +111,14 @@ export default{
     .main_box{
         width: 100%;
         height: 200px;
-        background-color: #fff;
-        // box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
-        // margin: 20px 0;
+        background-color: var(--main-white);;
         padding: 20px 30px;
         display: flex;
         justify-content: space-between;
-        border-bottom: 2px solid rgb(247, 248, 250);
+        border-bottom: 2px solid var(--bottom-white);
     }
     .main_box:hover{
-        background-color: rgb(249, 251, 253);
+        background-color: var(--hover-white);
     }
     .img_msg_box{
         display: flex;
@@ -134,7 +132,7 @@ export default{
         }
         .msg_box{
             padding: 5px 0px 5px 20px;
-            color: #a0a0a0;
+            color: var(--main-gray2);
             line-height: 32px;
             .seller_box{
                 display: flex;

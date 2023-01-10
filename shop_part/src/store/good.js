@@ -32,6 +32,7 @@ const actions = {
         const res = await reqGoodsDetail(id)
         if (res.code === 20000) { // 请求成功则提交数据
             commit('GOODDETAIL', res.data.goodsInfo);
+            // console.log(res.data.goodsInfo)
             return 'ok'
         } else {
             return Promise.reject(new Error('获取商品详情失败:' + res.message));

@@ -42,7 +42,7 @@ const actions = {
             const comfirmList = res.data.confirmOrderList;
             commit('GETCOMFIRMLIST', comfirmList);
             // 缓存确认单，防止刷新时丢失，这个没有存在数据库，存在redias中
-            sessionStorage.setItem('comfirmList', JSON.stringify(this.getters.realComfirmList));
+            localStorage.setItem('comfirmList', JSON.stringify(this.getters.realComfirmList));
             return 'ok'
         } else {
             return Promise.reject(new Error('生成校验单失败:' + res.message));

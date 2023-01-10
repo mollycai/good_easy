@@ -1,3 +1,30 @@
+:root {
+    --main-blue: #1e80ff;
+    --hover-blue: rgb(199, 222, 255);
+    --hover-blue2: #e8f3ff;
+    --main-gray1: #666666;
+    --main-gray2: #999999;
+    --main-gray3: #CCCCCC;
+    --main-black: #000000;
+    --main-black2: #111111;
+    --text-color: #333333;
+    --main-white: #ffffff;
+    --main-white2: #fcfcfc;
+    --main-white3: #e0e0e0;
+    --main-white4: #fafafa;
+    --main-white5: #f8f8f8;
+    --chat-white1: #f5f5f5;
+    --chat-white2: #e1e1e1;
+    --main-white-dark: rgb(220, 220, 220);
+    --hover-white: rgb(249, 251, 253);
+    --bottom-white: rgb(247, 248, 250);
+    --main-shadow: rgba(0, 0, 0, 0.1);
+    --main-shadow-light: rgba(0, 0, 0, .05);
+    --main-shadow-light2: rgba(0, 0, 0, .025);
+    --main-orange: #FFA116;
+    --main-red: #f50;
+}
+
 html,
 body {
     height: 100%;
@@ -46,7 +73,7 @@ textarea {
     /*font: 12px/1 Tahoma, Helvetica, Arial, "宋体", sans-serif;*/
     font: 12px/1.3 "Microsoft YaHei", Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
     /* 用 ascii 字符表示，使得在任何编码下都无问题 */
-    color: #333;
+    color: var(--text-color);
 }
 
 h1 {
@@ -126,14 +153,14 @@ dl {
 
 a {
     text-decoration: none;
-    color: #666;
+    color: var(--main-gray1);
 }
 
 
 /* 重置表单元素 */
 
 legend {
-    color: #000;
+    color: var(--main-black);
 }
 
 
@@ -183,7 +210,7 @@ hr {
 } */
 
 a:link:hover {
-    color: rgb(79, 76, 212) !important;
+    color: var(--main-blue) !important;
     text-decoration: underline;
 }
 

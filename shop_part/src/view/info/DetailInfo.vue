@@ -1,8 +1,8 @@
 <template> 
     <!-- 用户详细信息页面 -->
     <a-layout id="components-layout-demo-top-side">
-        <a-layout-content style="background-color: rgb(247,248,250);padding: 25px 0;">
-            <a-layout style="background: rgb(247,248,250);margin: 0 auto;max-width: 1180px;">
+        <a-layout-content style="background-color: var(--bottom-white);padding: 25px 0;">
+            <a-layout style="background: var(--bottom-white);margin: 0 auto;max-width: 1180px;">
                 <a-layout-content :style="{ minHeight: '280px' }">
                     <div class="back_box">
                         <span class="back_msg" @click="toInfo(info_routeName,info_routePath)" >
@@ -37,23 +37,23 @@ export default{
             this.$router.push({path:activePath});
         }
     },
-    beforeMount(){
-        document.title = this.$route.meta.title;
-    }
+    beforeMount() {
+        document.title = this.$route.meta.title
+    },
 }
 </script>
 
 <style lang="less" scoped>
     .back_box{
-        background-color: #fff;
+        background-color: var(--main-white);
         width: 100%;
-        box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        box-shadow: 0 1px 2px 0 var(--main-shadow-light);
         border-radius: 2px;
         padding: 15px 30px;
-        color: #a0a0a0;
+        color: var(--main-gray2);
     }
     .back_msg:hover{
         cursor: pointer;
-        color:#1e80ff ;
+        color:var(--main-blue) ;
     }
 </style>

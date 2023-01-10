@@ -10,7 +10,7 @@ import "nprogress/nprogress.css";
 // 利用axios方法create，创建一个axois的实例
 const request = axios.create({
     // 配置基础路径
-    baseURL: 'http://139.9.48.23:8081/shop',
+    baseURL: "/mock",
     // 配置请求超时的时间10s
     timeout: 10000
 });
@@ -40,7 +40,7 @@ request.interceptors.response.use(res => {
     return res.data;
 }, error => {
     // 响应失败的回调
-    return Promise.reject(error);
+    alert("服务器响应数据失败");
 })
 
 // 对外暴露

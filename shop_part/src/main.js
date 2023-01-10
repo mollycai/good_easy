@@ -9,8 +9,10 @@ import router from '@/router';
 import '@/plugins/design';
 //引入图片懒加载插件以及加载动图、默认图片
 import VueLazyload from 'vue-lazyload';
-import spin from '@/assets/default/spin.gif'
-import defalutImg from '@/assets/default/default.jpg'
+import spin from '@/assets/default/spin.gif';
+import defalutImg from '@/assets/default/default.jpg';
+// 引入mock
+import '@/mock/mockServer';
 
 Vue.use(VueLazyload, {
     error: defalutImg,
@@ -25,6 +27,10 @@ Vue.component(Header.name, Header);
 Vue.component(Footer.name, Footer);
 // 导入自己封装的axios
 import axios from '@/api/request';
+
+// 引入混合
+import loading from './mixins/loading';
+Vue.mixin(loading);
 
 // 将axios挂载到Vue的原型对象上
 Vue.prototype.$http = axios;

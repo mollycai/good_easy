@@ -21,12 +21,10 @@ const mutations = {
         state.categoryList = categoryList;
     },
     ALLGOODLIST(state, allGoodsList) {
-        state.allGoodsList.push(...allGoodsList);
-        state.goodsList = state.allGoodsList;
+        state.goodsList.push(...allGoodsList);
     },
     GOODLISTBYCATE(state, goodListByCate) {
-        state.goodListByCate.push(...goodListByCate);
-        state.goodsList = state.goodListByCate;
+        state.goodsList.push(...goodListByCate);
     },
     SETTOTAL(state, total) {
         state.total = total;

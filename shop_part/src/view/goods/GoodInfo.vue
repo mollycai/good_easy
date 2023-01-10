@@ -1,8 +1,8 @@
 <template>
     <!-- 商品详细信息页面 -->
     <a-layout id="components-layout-demo-top-side">
-        <a-layout-content style="background-color: rgb(247,248,250);padding: 25px 0;">
-            <a-layout style="background: rgb(247,248,250);margin: 0 auto;max-width: 1180px;">
+        <a-layout-content style="background-color: var(--bottom-white);padding: 25px 0;">
+            <a-layout style="background: var(--bottom-white);margin: 0 auto;max-width: 1180px;">
                 <a-layout-content >
                     <!-- 面包屑 -->
                     <div class="breadcrumb_box">
@@ -370,7 +370,21 @@ export default{
         },
         // 联系商家
         connectToSeller(){
-
+            // 封装双方的聊天基本信息
+            const chatMsg = {
+                userId: this.userId,
+                username:this.username,
+                avatar: this.userAvatar,
+                sellerId: this.goodDetail.sellerId,
+                sellerName:this.goodDetail.sellerName,
+                sellerAvatar: this.goodDetail.sellerAvatar,
+                goodId: this.goodDetail.id
+            }
+            const routeData = this.$router.resolve({path:'/chat'});
+            // 派发储存基本信息
+            this.$store.dispatch('setChatMsg',chatMsg);
+            // 跳转到聊天室
+            window.open(routeData.href,'_blank');
         },
         // 修改发布内容
         updatePlogGoodsInfo(){
@@ -560,12 +574,7 @@ export default{
                 this.dataSource = this.goods.attributes;
             }
             // 数据量大的等到请求到数据再取消加载动画
-            let self = document.getElementById('Loading');
-            if(self != null){
-                let parent = self.parentElement;
-                parent.removeChild(self);
-                document.body.style.overflowY = 'scroll';
-            }
+            this.removeLoading(); 
             // 缩小图片
             let DomList = document.getElementsByClassName('subject-content')[0].querySelectorAll('img');
             for(let i in  DomList){
@@ -591,8 +600,8 @@ export default{
             swiperThumbs.controller.control = swiperTop;
         })
     },
-    beforeMount(){
-        document.title = this.$route.meta.title;
+    beforeMount() {
+        document.title = this.$route.meta.title
     },
 }
 </script>
@@ -624,12 +633,12 @@ export default{
         opacity: 1;
     }
     .info_box,.comment_box{
-        background-color: #fff;
+        background-color: var(--main-white);
         width: 100%;
-        box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        box-shadow: 0 1px 2px 0 var(--main-shadow-light);
         border-radius: 2px;
         overflow: hidden;
-        color: #a0a0a0;
+        color: var(--main-gray2);
         padding: 30px 40px;
         min-height: 740px;
     }
@@ -639,13 +648,13 @@ export default{
     }
     .main_msg_box{
         display: flex;
-        background-color: #fff;
+        background-color: var(--main-white);
         width: 100%;
     }
     .img_box{
         height: 550px;
         width: 420px;
-        // border: 1px black solid;
+        // border: 1px var(--main-black) solid;
         padding: 10px ;
         .main_img{
             width:400px;
@@ -656,7 +665,7 @@ export default{
             background: url(data:application/octet-stream;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAC1JREFUeNpi+P//PwMMP3369AUyH1mMKEVwhYQUgRUSowjFakJOYBhOngEIMAB1izbs6IM8DAAAAABJRU5ErkJggg==) repeat scroll 0 0;
         }
         .mini_img{
-            // border: 1px black solid;
+            // border: 1px var(--main-black) solid;
             height: 80px;
             width: 80px;
             margin-right: 10px;
@@ -668,68 +677,68 @@ export default{
     
     }
     .message_box{
-        // border: 1px black solid;
+        // border: 1px var(--main-black) solid;
         width: 630px;
         height: 550px;
         margin-left: 50px;
         .title_box{
             padding: 50px 30px 15px 30px;
-            // border: 1px black solid;
+            // border: 1px var(--main-black) solid;
             font-size: 22px;
             font-weight: 700;
-            color: black;
+            color: var(--main-black);
             max-width: 600px;
             word-wrap:break-word;
         }
         .price_box{
             padding: 10px 30px;
-            // border: 1px black solid;
+            // border: 1px var(--main-black) solid;
             font-size: 32px;
             font-weight: 500;
             color: #FFA116;
         }
         .msg_box{
             padding: 20px 20px;
-            // border: 1px black solid;
+            // border: 1px var(--main-black) solid;
             .mini_msg{
                 padding:15px 20px;
                 width: 100%;
-                background-color: #f8f8f8;
+                background-color: var(--main-white5);
             }
         }
         .btn_box{
             padding: 20px 30px;
-            // border: 1px black solid;
+            // border: 1px var(--main-black) solid;
             height: 150px;
         }
     }
     .desc_box{
-        // border: 1px black solid;
+        // border: 1px var(--main-black) solid;
         // width: 100%;
         max-width: 1180px;
         // height:200px;
         margin-top: 30px;
         word-wrap:break-word;
         .seller_box{
-            // border: 1px black solid;
+            // border: 1px var(--main-black) solid;
             padding: 0px 0px 20px 10px;
             width: 100%;
             display: flex;
             justify-content: space-between;
             .detail_title{
                 height: 100%;
-                background-color: #e8f3ff;
+                background-color: var(--hover-blue2);
                 padding: 5px 10px;
-                color: #1e80ff;
+                color: var(--main-blue);
             }
         }
         .good_desc_box1{
-            // border: 1px black solid;
+            // border: 1px var(--main-black) solid;
             padding: 20px 20px;
             width: 100%;
-            color: rgb(150, 150, 150);
+            color: var(--main-gray2);
             min-height: 120px;
-            background-color: #f8f8f8;
+            background-color: var(--main-white5);
         }
         .good_desc_box2{
             height: 100%;

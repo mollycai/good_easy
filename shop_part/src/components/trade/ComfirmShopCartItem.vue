@@ -28,7 +28,7 @@
                         <span>点击填写备注</span>
                     </template>
                     <div class="remark_box" @click="(remark_show = true)">
-                        <span class="remark_text more_text">订单备注：<span style="color:rgb(160,160,160);">{{order.remark || '无备注'}}</span></span>
+                        <span class="remark_text more_text">订单备注：<span style="color:var(--main-gray2);">{{order.remark || '无备注'}}</span></span>
                         <a-modal v-model="remark_show" ok-text="确认" cancel-text="取消" title="订单备注" @ok="handleOk"  width="760px">
                             <a-input type="textarea" v-model="order.remark" placeholder="请输入订单备注"/>
                         </a-modal>
@@ -79,13 +79,13 @@ export default{
 <style lang="less" scoped>
     .outer_box1{
         width: 100%;
-        background-color: #fff;
+        background-color: var(--main-white);
         padding: 0px 30px;
         min-height: 260px;
     }
     .seller_box{
         display: flex;
-        border-bottom: 1px solid rgb(220, 220, 220);
+        border-bottom: 1px solid var(--main-white-dark);
         padding: 20px 0 15px;
     }
     .outer_box2{
@@ -114,7 +114,7 @@ export default{
         // border: 1px black solid;
     }
     .text_box{
-        color:rgb(160,160,160);
+        color:var(--main-gray2);
         max-width: 800px;
         word-break: normal;
         .title_box{
@@ -129,7 +129,7 @@ export default{
             cursor: pointer;
             padding: 5px 0px 0px 0px;
             .remark_text{
-                color:rgb(100,100,100);
+                color:var(--main-gray1);
                 -webkit-line-clamp: 2;/*这个属性不是css的规范属性，需要组合上面两个属性，表示显示2行。	*/
             }
         }
@@ -143,7 +143,7 @@ export default{
             text-align: right;
             font-size: 18px;
             font-weight: 500;
-            color: #000000;
+            color: var(--main-black);
         }
         .number_box{
             float: right;

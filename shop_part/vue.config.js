@@ -17,6 +17,6 @@ module.exports = defineConfig({
         },
     },
     transpileDependencies: true,
-    lintOnSave: false,
+    lintOnSave: false, // 关闭eslint
     runtimeCompiler: true //如果有自定义模板，添加这个
 });

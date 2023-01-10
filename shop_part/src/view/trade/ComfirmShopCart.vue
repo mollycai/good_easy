@@ -1,8 +1,8 @@
 <template>
     <!-- 确认单页面 -->
     <a-layout id="components-layout-demo-top-side">
-        <a-layout-content style="background-color: rgb(247,248,250);padding: 25px 0;">
-            <a-layout style="background: rgb(247,248,250);margin: 0 auto;max-width: 1180px;">
+        <a-layout-content style="background-color: var(--bottom-white);padding: 25px 0;">
+            <a-layout style="background: var(--bottom-white);margin: 0 auto;max-width: 1180px;">
                 <a-layout-content>
                     <div class="back_box">
                         <span class="back_msg" @click="$router.push({name:'shopcart'})" >
@@ -20,7 +20,7 @@
                     <div class="user_msg_box" @click="(visible = true)">
                         <div>
                             <div class="address_box">
-                            <a-icon type="environment" style="color: #1890ff;"/>
+                            <a-icon type="environment" style="color: var(--main-blue);"/>
                                 {{confirmShopcartUser.address}}
                             </div>
                             <div class="name_phone_box">
@@ -28,7 +28,7 @@
                             </div>
                         </div>
                         <div style="line-height: 60px;">
-                            <a-icon type="right" style="color: black;"/>
+                            <a-icon type="right" style="color: var(--main-black);"/>
                         </div>
                         <!-- 订单信息弹窗 -->
                         <a-modal v-model="visible" ok-text="确认" cancel-text="取消" title="收件人信息" @ok="handleOk"  width="760px">
@@ -56,8 +56,8 @@
                     </div> 
                     <div class="btn_box">
                         <div class="price_box"><span style="color: black;">价格明细：</span>
-                            共<span style="color: #1890ff;font-size: 18px;"> {{totalNumber}} </span>
-                            件商品，合计: <span style="color: #FFA116;font-size: 20px;">￥{{totalPrice.toFixed(2)}}</span>
+                            共<span style="color: var(--main-blue);font-size: 18px;"> {{totalNumber}} </span>
+                            件商品，合计: <span style="color: var(--main-orange);font-size: 20px;">￥{{totalPrice.toFixed(2)}}</span>
                         </div>
                         <a-button type="primary" @click="comfirm()">
                             提交订单
@@ -113,7 +113,7 @@ export default{
         comfirmList:{
             deep:true,
             handler(newValue, oldValue){
-                sessionStorage.setItem('comfirmList', JSON.stringify(this.comfirmList))
+                localStorage.setItem('comfirmList', JSON.stringify(this.comfirmList))
             }
         }
     },
@@ -131,21 +131,21 @@ export default{
                     phone:this.confirmShopcartUser.phone
                 }
             });
+
             this.$store.dispatch('reqOrder',orders).then((res) => {
                 // 渲染支付页面
-                // 借助sessionStorage传送表单
-                sessionStorage.setItem('alipay',res.data.form);
+                // 借助localStorage传送表单
+                localStorage.setItem('alipay',res.data.form);
                 // 先产生新的页面
                 let routeData = this.$router.resolve({name:'pay'});
                 window.open(routeData.href,'_blank');
                 // 再跳转到我买到的
                 this.$router.push({name:'mybuy'});
                 // 把暂存的确认单也删了
-                sessionStorage.removeItem('comfirmList');
+                localStorage.removeItem('comfirmList');
             }).catch((error) => {
                 this.$message.error(`${error}`);
             })
-            
         }
     },
     mounted(){
@@ -154,38 +154,33 @@ export default{
             this.confirmShopcartUser.phone = this.$store.state.user.userInfo.mobile;
             this.userId = this.$store.state.user.userInfo.id;
         })
-        // 从sessionStorage中读取
-        this.comfirmList = JSON.parse(sessionStorage.getItem('comfirmList'));
+        // 从localStorage中读取
+        this.comfirmList = JSON.parse(localStorage.getItem('comfirmList'));
     },
-    beforeMount(){
+    beforeMount() {
         document.title = this.$route.meta.title
     },
     created(){
-        let self = document.getElementById('Loading');
-        if(self != null){
-            let parent = self.parentElement;
-            parent.removeChild(self);
-            document.body.style.overflowY = 'scroll';
-        }
+        this.removeLoading(); 
     }
 }
 </script>
 <style lang="less" scoped>
     .back_box{
-        background-color: #fff;
+        background-color: var(--main-white);
         width: 100%;
-        box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        box-shadow: 0 1px 2px 0 var(--main-shadow-light);
         border-radius: 2px;
         padding: 15px 30px;
-        color: #a0a0a0;
+        color: var(--main-gray2);
         .back_msg{
             cursor: pointer;
         }
     }
     .user_msg_box{
         width: 100%;
-        background-color: #fff;
-        box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        background-color: var(--main-white);
+        box-shadow: 0 1px 2px 0 var(--main-shadow-light);
         padding: 30px 30px;
         display: flex;
         justify-content: space-between;
@@ -193,7 +188,7 @@ export default{
         margin-top: 20px;
         cursor: pointer;
         .address_box{
-            color: black;
+            color: var(--main-black);
             font-size: 18px;
             font-weight: 600;
             line-height: 35px;
@@ -212,8 +207,8 @@ export default{
     }
     .btn_box{
         width: 100%;
-        background-color: #fff;
-        box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        background-color: var(--main-white);
+        box-shadow: 0 1px 2px 0 var(--main-shadow-light1);
         padding: 20px 30px;
         border-radius: 2px;
         margin-top: 20px;
@@ -223,7 +218,7 @@ export default{
         .price_box{
             font-size: 15px;
             font-weight: 600;
-            color: rgb(160,160,160);
+            color: var(--main-gray2);
         }
     }
 </style>

@@ -63,15 +63,15 @@ export default{
 
 <style lang="less" scoped>
     .trans_box{
-        background-color: #fff;
+        background-color: var(--main-white);
         width: 100%;
-        box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        box-shadow: 0 1px 2px 0 var(--main-shadow-light);
         border-radius: 2px;
         padding: 5px 40px 2px ;
         overflow: hidden;
         min-height: 50px;
         margin-top: 25px;
-        border-bottom: 2px solid #f7f8fa;
+        border-bottom: 2px solid var(--bottom-white);
     }
     .empty_box{
         height: 300px;

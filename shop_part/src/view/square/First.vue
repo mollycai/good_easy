@@ -1,7 +1,7 @@
 <template>
     <!-- 首页（广场） -->
-    <a-layout-content style="background-color: #fff;">
-        <a-layout style="background: #fff">
+    <a-layout-content style="background-color: var(--main-white);">
+        <a-layout style="background: var(--main-white);">
             <a-layout-content :style="{ minHeight: '280px' }">
                 <!-- 轮播图 -->
                 <BigSwiper></BigSwiper>
@@ -25,16 +25,11 @@ export default{
         Advertise,
         GoodsCate
     },
-    beforeMount(){
+    beforeMount() {
         document.title = this.$route.meta.title
     },
     created(){
-        let self = document.getElementById('Loading');
-        if(self != null){
-            let parent = self.parentElement;
-            parent.removeChild(self);
-            document.body.style.overflowY = 'scroll';
-        }
+        this.removeLoading(); 
     }
 }
 </script>

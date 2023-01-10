@@ -1,8 +1,8 @@
 <template>
     <!-- 发布商品页面 -->
     <a-layout id="components-layout-demo-top-side">
-        <a-layout-content style="background-color: rgb(247,248,250);padding: 25px 0;">
-            <a-layout style="background: rgb(247,248,250);margin: 0 auto;max-width: 1180px;">
+        <a-layout-content style="background-color: var(--bottom-white);padding: 25px 0;">
+            <a-layout style="background: var(--bottom-white);margin: 0 auto;max-width: 1180px;">
                 <a-layout-content>
                     <div class="msg_title">
                         <a-icon type="form" class="icon_box"/>&nbsp;发布宝贝
@@ -316,23 +316,18 @@ export default{
     },
     mounted(){
         this.$store.dispatch('categoryList').then(()=>{
-            const realCategoryList = JSON.parse(JSON.stringify(this.$store.state.square.categoryList))
-            this.plogCategoryList = this.categoryList(realCategoryList)
+            const realCategoryList = JSON.parse(JSON.stringify(this.$store.state.square.categoryList));
+            this.plogCategoryList = this.categoryList(realCategoryList);
         })
         this.$store.dispatch('getUserInfo').then(()=>{
-            this.goods.userId = this.$store.state.user.userInfo.id
+            this.goods.userId = this.$store.state.user.userInfo.id;
         })
     },
-    beforeMount(){
+    beforeMount() {
         document.title = this.$route.meta.title
     },
     created(){
-        let self = document.getElementById('Loading');
-        if(self != null){
-            let parent = self.parentElement;
-            parent.removeChild(self);
-            document.body.style.overflowY = 'scroll';
-        }
+        this.removeLoading(); 
     }
 }
 </script>
@@ -341,20 +336,20 @@ export default{
     .msg_box{
         width: 100%;
         // min-height: 330px;
-        background-color: #fff;
-        box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+        background-color: var(--main-white);
+        box-shadow: 0 1px 2px 0 var(--main-shadow-light);
         padding: 30px 30px;
         margin-top: 20px;
     }
     .btn_box{
-        background-color: #fff;
+        background-color: var(--main-white);
         margin-top: 20px;
         padding: 20px 0 8px 0;
     }
     .msg_title{
         padding: 15px 30px;
-        background-color: #fff;
-        color: black;
+        background-color: var(--main-white);
+        color: var(--main-black);
         font-size: 20px;
         font-weight: 700;
     }
@@ -401,7 +396,7 @@ export default{
 
     .editable-cell-icon:hover,
     .editable-cell-icon-check:hover {
-        color: #108ee9;
+        color: var(--main-blue);
     }
 
     .editable-add-btn {

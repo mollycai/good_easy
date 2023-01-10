@@ -38,8 +38,8 @@ export default{
         font-size: 15px;
     }
     .admin_avater{
-        color: #1890ff; 
-        background-Color: rgb(199, 222, 255);
+        color: var(--main-blue); 
+        background-Color: var(--hover-blue);
     }
     .name_box{
         display: inline-block;
